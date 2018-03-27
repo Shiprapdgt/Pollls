@@ -2,4 +2,4 @@ db.sqlite3
 .idea
 mysite/settings.py
 __pycache__
-
+test_gitignore.html
