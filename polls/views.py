@@ -11,9 +11,14 @@ from django.utils import timezone
 
 
 
+
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
+
+#def example(request):
+#    return HttpResponse("testing another method")
+
 
     def get_queryset(self):
         """
