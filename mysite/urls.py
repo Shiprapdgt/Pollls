@@ -17,9 +17,33 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib import admin
 from django.urls import include, path
-
+from django.conf.urls import include, url
+from django.conf.urls.i18n import i18n_patterns
+from polls import views as polls_views
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
+    #path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
+
+
 ]
+
+urlpatterns += i18n_patterns(
+     #path('polls/', include('polls.urls')),
+    path('polls/translationspage/', polls_views.login, name='login'),
+    prefix_default_language= False
+)
+
+
+#urlpatterns = [
+#    url(r'^(?P<filename>(robots.txt)|(humans.txt))$',
+#        home_files, name='home-files'),
+#]
+
+#urlpatterns += i18n_patterns(
+#    url(r'^$', home, name='home'),
+#    url(r'^admin/', include(admin.site.urls)),
+#)
+
+
+

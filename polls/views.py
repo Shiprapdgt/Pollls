@@ -2,10 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
+from django.utils.translation import gettext as _
+from django.template import loader
 
 
 from .models import Question, Choice
 from django.utils import timezone
+
 
 # Create your views here.
 
@@ -61,3 +64,11 @@ def vote(request, question_id):
 
 #def index(request):
 #   return HttpResponse("another view inside polls")
+
+def my_view(request):
+    output = _("Welcome to my site.")
+    output+=_("en")
+    return HttpResponse(output)
+
+def login(request):
+ return render(request, 'polls/login.html')
