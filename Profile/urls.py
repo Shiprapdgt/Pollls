@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = 'polls'
+app_name = 'profile'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
@@ -11,5 +11,3 @@ urlpatterns = [
     path('translations/', views.my_view, name='my_view'),
     path('translationspage/', views.login, name='login'),
 ]
-
-

@@ -70,5 +70,7 @@ def my_view(request):
     output+=_("en")
     return HttpResponse(output)
 
+
+
 def login(request):
  return render(request, 'polls/login.html')
