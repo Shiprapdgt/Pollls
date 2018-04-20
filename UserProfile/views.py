@@ -9,15 +9,17 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .authentication import TokenAuthentication
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
 
 
-class Login(APIView):
-    permission_classes = (AllowAny, )
-    def post(self, request):
+class UserViewSet(viewsets.ModelViewSet):
+
+    @action(methods=['post'], detail=False, permission_classes=[AllowAny])
+    def login(self, request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        print('*' * 100, user, 2)
         if user is not None:
             rand_token = uuid4()
             t_obj = Token(user=user, key=rand_token)
@@ -31,13 +33,3 @@ class Login(APIView):
             return Response(response_serializer.data)
         else:
             return "Authentication failed"
-
-
-class Logout(APIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-
-    def post(self, request):
-        token = request.META.get('HTTP_AUTHORIZATION')
-        Token.objects.get(key=token).delete()
-        return Response("logged out")
