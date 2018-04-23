@@ -21,13 +21,15 @@ from django.contrib import admin
 from rest_framework import routers
 from UserProfile import views as profile_views
 from rest_framework.routers import DefaultRouter
-from UserProfile.views import UserViewSet
+from UserProfile.views import UserViewSet, ProfileViewSet
 
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, base_name='user')
+router.register(r'profile', ProfileViewSet, base_name='profile')
 urlpatterns = router.urls
 login_page = UserViewSet.as_view({'post': 'login'})
+profile = ProfileViewSet.as_view({'post': 'make'})
 
 urlpatterns+= [
     #path('polls/', include('polls.urls')),

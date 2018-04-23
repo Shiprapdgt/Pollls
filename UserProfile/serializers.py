@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Token
+from .models import Token, Profile
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -20,3 +20,8 @@ class ResponseSerializer(serializers.Serializer):
 
     user = UserSerializer()
     token = TokenSerializer()
+
+class ProfileSerializer(serializers.Serializer):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'hobbies', 'birth_date')
